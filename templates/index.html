@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="../style/style.css" />
+    <title>Ascii-art-web</title>
+</head>
+
+<body>
+    <div id="name">
+        <h1>Ascii-art-web</h1>
+    </div>
+    <div id="test">
+        <form action="/ascii-art" method="post">
+            <label for="textToPrint">Text to Print</label><br>
+            <textarea type="text" id="fname" name="check" placeholder="Type text to print"></textarea><br>
+            <label for="font">Font</label>
+            <select name="font" id="font">
+                <option value="standard">Standard</option>
+                <option value="shadow">Shadow</option>
+                <option value="thinkertoy">Thinkertoy</option>
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <div id="res">
+        <article>
+            <pre>{{.}}</pre>
+        </article> 
+    </div>
+    <script>
+        const fontSelect = document.getElementById('font');
+
+        // Check if a value exists in the local storage
+        if (localStorage.getItem('selectedFont')) {
+            // Set the select box to the stored value
+            fontSelect.value = localStorage.getItem('selectedFont');
+        }
+
+        // Listen for change events on the select box
+        fontSelect.addEventListener('change', function() {
+            // Store the selected value in the local storage
+            localStorage.setItem('selectedFont', fontSelect.value);
+        });
+    </script>
+</body>
+
+</html>
